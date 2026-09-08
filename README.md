@@ -1,7 +1,7 @@
 # my nixos dotfiles
 
-##desktop
+## desktop
 
-##laptop
+## laptop
 
-##server
+## server
