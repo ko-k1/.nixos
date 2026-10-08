@@ -6,10 +6,15 @@
 }:
 {
   imports = [
+    ./packages.nix
+    ./theme.nix
     ./git.nix
     ./shell.nix
     ./tmux.nix
-    ./zsh.nix
+    ./hyprland.nix
+    ./niri.nix
+    ./waybar.nix
+    ./zsuggestion.nix
     ./programs/alacritty.nix
     ./programs/kitty.nix
     ./programs/wezterm.nix

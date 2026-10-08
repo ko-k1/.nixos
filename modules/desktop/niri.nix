@@ -1,41 +1,20 @@
+# Niri (system side). User-side config lives in home/koki/niri.nix.
+# Toggle with `myDesktop.niri.enable`.
 {
   config,
   lib,
   pkgs,
   ...
 }:
+let
+  cfg = config.myDesktop.niri;
+in
 {
-  programs.niri.enable = true;
-
-  xdg.portal.enable = true;
-  xdg.portal.extraPortals = [ pkgs.xdg-desktop-portal-gtk ];
-  xdg.portal.config = {
-    common = {
-      default = [ "gtk" ];
-    };
+  options.myDesktop.niri.enable = lib.mkEnableOption "Niri compositor" // {
+    default = true;
   };
 
-  home-manager.users.koki = {
-    xdg.configFile."niri/config.kdl".text = ''
-      input {
-          keyboard {
-              xkb {
-                  layout "us"
-              }
-          }
-      }
-
-      prefer-no-csd true
-
-      spawn-at-startup "waybar"
-
-      binds {
-          Mod+Return { spawn "kitty"; }
-          Mod+Q { close-window; }
-          Mod+Shift+E { quit; }
-          Mod+F { toggle-window-floating; }
-          Mod+Space { switch-focus-between-floating-and-tiling; }
-      }
-    '';
+  config = lib.mkIf cfg.enable {
+    programs.niri.enable = true;
   };
 }

@@ -1,3 +1,6 @@
+# Pure Nix-managed LSPs: servers come from `extraPackages` (default.nix),
+# no Mason, no runtime downloads. Uses Neovim's built-in `vim.lsp`
+# API (0.11+); nvim-lspconfig stays installed as a config fallback.
 {
   config,
   lib,
@@ -7,25 +10,19 @@
 {
   config.koki.nvim.luaConfig = [
     ''
-      local lspconfig = require("lspconfig")
+      local capabilities = require("cmp_nvim_lsp").default_capabilities()
 
-      require("mason").setup()
-      require("mason-lspconfig").setup({
-        ensure_installed = {
-          "lua_ls",
-          "nil_ls",
-          "pyright",
-          "gopls",
-          "rust_analyzer",
-          "typescript-language-server",
-        },
-        automatic_installation = true,
+      vim.lsp.config("*", {
+        capabilities = capabilities,
       })
 
-      require("mason-lspconfig").setup_handlers({
-        function(server)
-          lspconfig[server].setup({})
-        end,
+      vim.lsp.enable({
+        "lua_ls",
+        "nil_ls",
+        "pyright",
+        "gopls",
+        "rust_analyzer",
+        "ts_ls",
       })
     ''
   ];

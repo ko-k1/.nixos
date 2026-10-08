@@ -1,0 +1,39 @@
+diff --git a/res/config.ini b/res/config.ini
+index 86f44b4..9b0d29f 100644
+--- a/res/config.ini
++++ b/res/config.ini
+@@ -87,6 +87,9 @@ bigclock = none
+ # Set bigclock to 12-hour notation.
+ bigclock_12hr = false
+ 
++# Set the bigclock text color (0xRRGGBB in truecolor mode, 0x0001-0x0008 in 8-color mode).
++bigclock_fg = 0xFFFFFF
++
+ # Set bigclock to show the seconds.
+ bigclock_seconds = false
+ 
+diff --git a/src/config/Config.zig b/src/config/Config.zig
+index 2233cb4..8300b8f 100644
+--- a/src/config/Config.zig
++++ b/src/config/Config.zig
+@@ -21,6 +21,7 @@ bg: u32 = 0x00000000,
+ bigclock: Bigclock = .none,
+ bigclock_12hr: bool = false,
+ bigclock_seconds: bool = false,
++bigclock_fg: u32 = 0x00FFFFFF,
+ blank_box: bool = true,
+ border_fg: u32 = 0x00FFFFFF,
+ box_title: ?[]const u8 = null,
+diff --git a/src/main.zig b/src/main.zig
+index f9f4a51..98d5eb1 100644
+--- a/src/main.zig
++++ b/src/main.zig
+@@ -573,7 +573,7 @@ pub fn main(init: std.process.Init) !void {
+         &state.buffer,
+         "",
+         null,
+-        state.buffer.fg,
++        state.config.bigclock_fg,
+         state.buffer.bg,
+         switch (state.config.bigclock) {
+             .none, .en => .en,

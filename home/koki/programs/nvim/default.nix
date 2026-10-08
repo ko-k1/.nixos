@@ -15,6 +15,7 @@ in
     ./options.nix
     ./plugins.nix
     ./treesitter.nix
+    ./editor.nix
   ];
 
   options.koki.nvim = {
@@ -34,7 +35,18 @@ in
       defaultEditor = true;
       vimAlias = true;
       viAlias = true;
-      extraPackages = [ pkgs.ripgrep pkgs.fd ];
+      # Tools on PATH for the editor: finders + all language servers
+      # (managed by Nix, see lsp.nix — no Mason).
+      extraPackages = with pkgs; [
+        ripgrep
+        fd
+        lua-language-server
+        nil
+        pyright
+        gopls
+        rust-analyzer
+        typescript-language-server
+      ];
       plugins = cfg.plugins;
       initLua = lib.concatStringsSep "\n" cfg.luaConfig;
     };

@@ -1,3 +1,5 @@
+# Starship prompt. The actual theme is home/koki/starship.toml (Catppuccin
+# Mocha); this module only loads it so the TOML stays editable as data.
 {
   config,
   lib,
@@ -8,10 +10,8 @@
   programs.starship = {
     enable = true;
     enableZshIntegration = true;
-    settings = {
-      add_newline = true;
-      format = "$directory$git_branch$git_status$character";
-      directory.truncation_length = 3;
-    };
+    enableBashIntegration = true;
+    enableFishIntegration = true;
+    settings = builtins.fromTOML (builtins.readFile ../starship.toml);
   };
 }

@@ -9,8 +9,6 @@
     plenary-nvim
     nvim-treesitter.withAllGrammars
     nvim-lspconfig
-    mason-nvim
-    mason-lspconfig-nvim
     nvim-cmp
     cmp-nvim-lsp
     cmp-buffer

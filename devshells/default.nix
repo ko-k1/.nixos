@@ -8,7 +8,7 @@ import ../devshells/common.nix {
     tldr
     unzip
     my-package
-    scripts.nix-rebuild
-    scripts.nix-check
+    myScripts.nix-rebuild
+    myScripts.nix-check
   ];
 }
