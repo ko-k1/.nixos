@@ -1,0 +1,27 @@
+{
+  config,
+  lib,
+  pkgs,
+  ...
+}:
+{
+  config.koki.nvim.plugins = with pkgs.vimPlugins; [
+    plenary-nvim
+    nvim-treesitter.withAllGrammars
+    nvim-lspconfig
+    mason-nvim
+    mason-lspconfig-nvim
+    nvim-cmp
+    cmp-nvim-lsp
+    cmp-buffer
+    cmp-path
+    cmp_luasnip
+    luasnip
+    telescope-nvim
+    telescope-fzf-native-nvim
+    nvim-autopairs
+    gitsigns-nvim
+    nvim-web-devicons
+    comment-nvim
+  ];
+}
