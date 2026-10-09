@@ -46,6 +46,6 @@ in
   # Real session config, managed verbatim (was hand-maintained in
   # ~/.config/hypr/). Managed copies are byte-identical, so switching only
   # relinks them into the Nix store.
-  home.file.".config/hypr/hyprland.lua".source = ./hyprland.lua;
-  home.file.".config/hypr/hyprpaper.conf".source = ./hyprpaper.conf;
+  home.file.".config/hypr/hyprland.lua".source = ./dotfiles/hypr/hyprland.lua;
+  home.file.".config/hypr/hyprpaper.conf".source = ./dotfiles/hypr/hyprpaper.conf;
 }

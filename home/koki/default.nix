@@ -18,6 +18,7 @@
     ./mutable.nix
     ./apps.nix
     ./programs/alacritty.nix
+    ./programs/foot.nix
     ./programs/kitty.nix
     ./programs/wezterm.nix
     ./programs/starship.nix

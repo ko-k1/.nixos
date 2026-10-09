@@ -1,5 +1,5 @@
 { pkgs, ... }:
-import ../devshells/common.nix {
+import ./common.nix {
   inherit pkgs;
   packages = with pkgs; [
     python3

@@ -28,13 +28,8 @@
     }@inputs:
     let
       system = "x86_64-linux";
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        overlays = [ self.overlays.default ];
-      };
-
       lib = import ./lib { inherit inputs; };
+      pkgs = lib.mkPkgs system;
 
       shell = name: import ./devshells/${name}.nix { inherit pkgs; };
     in

@@ -10,7 +10,6 @@
 }:
 {
   programs.waybar.enable = true;
-  programs.foot.enable = true;
 
   xdg.configFile."waybar" = {
     source = ./dotfiles/waybar;

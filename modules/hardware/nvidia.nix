@@ -1,7 +1,7 @@
 # NVIDIA RTX 2080 Ti (Turing). DRM modesetting is required for Wayland.
 # `open = false`: Turing works better on the proprietary kernel module.
 # The driver package follows the running kernel (`production`, optionally
-# patched via overlays/nvidia.nix). `unstable` arrives via flake
+# patched via patches/nvidia-driver-kernel.patch). `unstable` arrives via flake
 # specialArgs.
 {
   config,
@@ -10,6 +10,15 @@
   unstable,
   ...
 }:
+let
+  # Optional kernel-compat patch: drop content into
+  # patches/nvidia-driver-kernel.patch to fix a build failure against the
+  # current kernel. Empty or missing file = no-op.
+  kernelPatch = ../../patches/nvidia-driver-kernel.patch;
+  hasKernelPatch =
+    builtins.pathExists kernelPatch && builtins.stringLength (builtins.readFile kernelPatch) > 0;
+  driver = config.boot.kernelPackages.nvidiaPackages.production;
+in
 {
   # Xid 62 freeze mitigations for Turing: preserve VRAM across suspend,
   # enable nvidia-drm fbdev for Wayland, disable GSP firmware offload
@@ -40,7 +49,13 @@
     nvidiaSettings = true;
     # production is more stable than stable (595.71.05) for Turing Xid 62.
     # Revert to .stable if production causes build issues with kernel 6.18.
-    package = config.boot.kernelPackages.nvidiaPackages.production;
+    package =
+      if hasKernelPatch then
+        driver.overrideAttrs (old: {
+          patches = (old.patches or [ ]) ++ [ kernelPatch ];
+        })
+      else
+        driver;
   };
 
   services.xserver.videoDrivers = [ "nvidia" ];

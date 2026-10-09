@@ -8,8 +8,35 @@ let
     home-manager
     shojiwm
     ;
+
+  # Single source of nixpkgs config for every pkgs instance (NixOS module
+  # path, standalone home-manager, flake devShells/formatter).
+  nixpkgsConfig = {
+    allowUnfree = true;
+    permittedInsecurePackages = [
+      "openssl-1.1.1w"
+    ];
+  };
+
+  overlays = [ (import ../overlays) ];
+
+  mkUnstable =
+    system:
+    import nixpkgs-unstable {
+      inherit system;
+      config.allowUnfree = true;
+    };
+
+  mkPkgs =
+    system:
+    import nixpkgs {
+      inherit system overlays;
+      config = nixpkgsConfig;
+    };
 in
 {
+  inherit mkPkgs;
+
   mkSystem =
     {
       host,
@@ -20,10 +47,7 @@ in
       extraSpecialArgs ? { },
     }:
     let
-      unstable = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-      };
+      unstable = mkUnstable system;
     in
     nixpkgs.lib.nixosSystem {
       inherit system;
@@ -33,11 +57,10 @@ in
       // extraSpecialArgs;
       modules = [
         {
-          nixpkgs.overlays = [ (import ../overlays) ];
-          nixpkgs.config.allowUnfree = true;
+          nixpkgs.overlays = overlays;
+          nixpkgs.config = nixpkgsConfig;
         }
         (../hosts/${host}/default.nix)
-        (../hosts/${host}/hardware-configuration.nix)
         shojiwm.nixosModules.default
         home-manager.nixosModules.home-manager
         {
@@ -65,27 +88,10 @@ in
       extraModules ? [ ],
       extraSpecialArgs ? { },
     }:
-    let
-      unstable = import nixpkgs-unstable {
-        inherit system;
-        config.allowUnfree = true;
-      };
-      pkgs = import nixpkgs {
-        inherit system;
-        config.allowUnfree = true;
-        # Keep in sync with modules/system/packages.nix: the NixOS module
-        # path sets this via nixpkgs.config, but standalone home-manager
-        # builds (home-manager switch --flake .#koki) need it here.
-        config.permittedInsecurePackages = [
-          "openssl-1.1.1w"
-        ];
-        overlays = [ (import ../overlays) ];
-      };
-    in
     home-manager.lib.homeManagerConfiguration {
-      inherit pkgs;
+      pkgs = mkPkgs system;
       extraSpecialArgs = {
-        inherit unstable;
+        unstable = mkUnstable system;
       }
       // extraSpecialArgs;
       modules = [ (../home/${user}/default.nix) ] ++ extraModules;

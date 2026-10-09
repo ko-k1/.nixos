@@ -5,7 +5,6 @@ final: prev:
 let
   compose = prev.lib.composeManyExtensions [
     (import ./ly.nix)
-    (import ./nvidia.nix)
     (import ./waybar.nix)
     (import ./bibata.nix)
     (final: prev: {

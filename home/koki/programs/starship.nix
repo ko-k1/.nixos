@@ -1,4 +1,4 @@
-# Starship prompt. The actual theme is home/koki/starship.toml (Catppuccin
+# Starship prompt. The actual theme is home/koki/dotfiles/starship/starship.toml (Catppuccin
 # Mocha); this module only loads it so the TOML stays editable as data.
 {
   config,
@@ -12,6 +12,6 @@
     enableZshIntegration = true;
     enableBashIntegration = true;
     enableFishIntegration = true;
-    settings = builtins.fromTOML (builtins.readFile ../starship.toml);
+    settings = builtins.fromTOML (builtins.readFile ../dotfiles/starship/starship.toml);
   };
 }

@@ -1,6 +1,6 @@
 # Shells. zsh is the daily driver (zsuggestion owns the suggestion
-# ghost-text, so the stock autosuggestion plugin stays off); bash/fish are
-# configured with the same aliases for rescue sessions.
+# ghost-text, so the stock autosuggestion plugin stays off); bash mirrors
+# zsh for rescue sessions, fish only gets the shared home.shellAliases.
 {
   config,
   lib,
@@ -8,9 +8,8 @@
   ...
 }:
 let
-  aliases = {
-    ll = "ls -lah";
-    v = "nvim";
+  # bash/zsh only; the minimal set shared with fish is home.shellAliases.
+  posixAliases = {
     c = "clear";
     q = "exit";
     l = "eza -a --colour=always --icons";
@@ -21,20 +20,18 @@ let
     ".." = "cd ..";
     "-" = "cd -";
   };
-  fishAliases = {
-    ll = "ls -lah";
-    v = "nvim";
-  };
 in
 {
+  # Applied to bash, zsh and fish alike.
   home.shellAliases = {
     ll = "ls -lah";
     la = "ls -la";
+    v = "nvim";
   };
 
   programs.bash = {
     enable = true;
-    shellAliases = aliases;
+    shellAliases = posixAliases;
   };
 
   programs.zsh = {
@@ -56,13 +53,10 @@ in
       setopt HIST_IGNORE_ALL_DUPS
       eval "$(zsuggestion init zsh)"
     '';
-    shellAliases = aliases;
+    shellAliases = posixAliases;
   };
 
-  programs.fish = {
-    enable = true;
-    shellAliases = fishAliases;
-  };
+  programs.fish.enable = true;
 
   programs.fzf = {
     enable = true;
