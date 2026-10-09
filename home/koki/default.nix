@@ -22,6 +22,7 @@
     ./programs/kitty.nix
     ./programs/wezterm.nix
     ./programs/starship.nix
+    ./programs/sonora.nix
     ./programs/nvim
   ];
 

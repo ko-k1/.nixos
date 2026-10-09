@@ -7,6 +7,7 @@ let
     nixpkgs-unstable
     home-manager
     shojiwm
+    sonora
     ;
 
   # Single source of nixpkgs config for every pkgs instance (NixOS module
@@ -70,6 +71,7 @@ in
             # Move conflicting unmanaged files to *.backup instead of
             # failing the whole switch.
             backupFileExtension = "backup";
+            sharedModules = [ sonora.homeManagerModules.default ];
             users.${user} = import (../home/${home}/default.nix);
             extraSpecialArgs = {
               inherit unstable;
@@ -94,6 +96,10 @@ in
         unstable = mkUnstable system;
       }
       // extraSpecialArgs;
-      modules = [ (../home/${user}/default.nix) ] ++ extraModules;
+      modules = [
+        sonora.homeManagerModules.default
+        (../home/${user}/default.nix)
+      ]
+      ++ extraModules;
     };
 }
