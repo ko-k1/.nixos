@@ -56,6 +56,7 @@
 
       devShells.${system} = {
         default = shell "default";
+        all = shell "all";
         clang = shell "clang";
         cpp = shell "cpp";
         go = shell "go";

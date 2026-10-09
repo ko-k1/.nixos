@@ -34,6 +34,7 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
 - `patches/`           upstream fix patches: ly bigclock color + waybar lua dispatch (via overlays), optional nvidia kernel patch (applied in `modules/hardware/nvidia.nix` to the `production` driver; empty = no-op)
 - `devshells/`         per-language dev shells
   - `devshells/common.nix` shared devshell template (base tools + `packages` param)
+  - `devshells/all.nix` integrated shell merging every language shell via `inputsFrom` (`nix develop .#all`)
 
 ## Commands
 
@@ -42,7 +43,7 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
 - dry build:    `sudo nixos-rebuild build --flake .#h4ck1ng-h0st`
 - home:         `home-manager switch --flake .#koki`
 - check:        `nix flake check`
-- shells:       `nix develop` (or `. /devshells/...` via direnv)
+- shells:       `nix develop` / `nix develop .#all` (everything) (or `. /devshells/...` via direnv)
 - format:       `nix fmt`
 
 ## Conventions
