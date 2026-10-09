@@ -73,6 +73,12 @@ in
       pkgs = import nixpkgs {
         inherit system;
         config.allowUnfree = true;
+        # Keep in sync with modules/system/packages.nix: the NixOS module
+        # path sets this via nixpkgs.config, but standalone home-manager
+        # builds (home-manager switch --flake .#koki) need it here.
+        config.permittedInsecurePackages = [
+          "openssl-1.1.1w"
+        ];
         overlays = [ (import ../overlays) ];
       };
     in

@@ -15,6 +15,8 @@
     ./niri.nix
     ./waybar.nix
     ./zsuggestion.nix
+    ./mutable.nix
+    ./apps.nix
     ./programs/alacritty.nix
     ./programs/kitty.nix
     ./programs/wezterm.nix

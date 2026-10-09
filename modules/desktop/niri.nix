@@ -16,5 +16,9 @@ in
 
   config = lib.mkIf cfg.enable {
     programs.niri.enable = true;
+    # niri spawns xwayland-satellite on demand for X11 clients (Steam,
+    # Discord). It used to arrive transitively via the shojiwm module;
+    # newer shojiwm no longer ships it, so pin it here explicitly.
+    environment.systemPackages = [ pkgs.xwayland-satellite ];
   };
 }

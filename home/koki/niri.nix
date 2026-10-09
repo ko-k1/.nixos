@@ -1,5 +1,7 @@
-# Niri user config (KDL). Enablement is system-side
-# (modules/desktop/niri.nix).
+# Niri user config (KDL). Compositor enablement is system-side
+# (modules/desktop/niri.nix). The config is managed verbatim (was
+# hand-maintained in ~/.config/niri/config.kdl) — a stub here would make
+# Home Manager back up the real 675-line config on first switch.
 {
   config,
   lib,
@@ -7,25 +9,5 @@
   ...
 }:
 {
-  xdg.configFile."niri/config.kdl".text = ''
-    input {
-        keyboard {
-            xkb {
-                layout "us"
-            }
-        }
-    }
-
-    prefer-no-csd true
-
-    spawn-at-startup "waybar"
-
-    binds {
-        Mod+Return { spawn "kitty"; }
-        Mod+Q { close-window; }
-        Mod+Shift+E { quit; }
-        Mod+F { toggle-window-floating; }
-        Mod+Space { switch-focus-between-floating-and-tiling; }
-    }
-  '';
+  xdg.configFile."niri/config.kdl".source = ./niri-config.kdl;
 }

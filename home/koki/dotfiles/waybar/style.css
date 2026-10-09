@@ -1,0 +1,215 @@
+* {
+    border: none;
+    border-radius: 0px;
+    font-family: JetBrains Mono Nerd Font;
+    font-size: 14px;
+    min-height: 0;
+}
+
+window#waybar {
+    background-color: rgba(0, 0, 0, 0.3);
+    border: 2px solid #a277ff;
+    color: #ffffff;
+    padding: 8px 8px;
+    margin: 4px;
+}
+
+window#waybar.hidden {
+    opacity: 0.3;
+}
+
+#workspaces {
+    margin: 0px 0px;
+    padding: 0 4px;
+    background-color: transparent;
+}
+
+#workspaces button {
+    border-radius: 0px;
+    margin: 4px 2px;
+    padding: 0 3px;
+    color: rgba(255, 255, 255, 0.6);
+    background-color: transparent;
+    border: 4px solid transparent;
+}
+
+#workspaces button:hover {
+    color: #a277ff;
+    background-color: rgba(162, 119, 255, 0.1);
+}
+
+#workspaces button.active {
+    color: #a277ff;
+    background-color: rgba(162, 119, 255, 0.15);
+    border: 2px solid rgba(162, 119, 255, 0.8);
+}
+
+#workspaces button.urgent {
+    color: #ff6767;
+    border: 2px solid rgba(255, 103, 103, 0.6);
+}
+
+#custom-cava_mviz {
+    padding: 0 2px;
+    margin: 2px 0;
+    color: #a277ff;
+}
+
+#custom-mpris_title {
+    padding: 0 2px;
+    margin: 2px 0;
+    color: #61ffca;
+}
+
+#custom-mpris_title.paused {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#custom-mpris_title.stopped {
+    color: rgba(255, 255, 255, 0.4);
+}
+
+#window {
+    margin: 8px 0px;
+    padding: 0px 4px;
+    background-color: transparent;
+    /*border: 2px solid rgba(162, 119, 255, 0.6);*/
+    color: #ffffff;
+    border-bottom: 2px solid #a277ff;
+    text-shadow: #000000 2px 2px 2px;
+}
+
+#clock {
+    padding: 0 2px;
+    margin: 2px 0;
+    color: #ffffff;
+}
+
+#pulseaudio {
+    padding: 0 2px;
+    margin: 2px 0;
+    color: #ffffff;
+}
+
+#pulseaudio.muted {
+    color: #ff6767;
+}
+
+#network {
+    padding: 0 2px;
+    margin: 2px 0;
+    color: #ffffff;
+}
+
+#network.disconnected {
+    color: #ff6767;
+}
+
+#cpu {
+    padding: 0 2px;
+    margin: 2px 0;
+    color: #61ffca;
+}
+
+#memory {
+    padding: 0 2px;
+    margin: 2px 0;
+    color: #a277ff;
+}
+
+#disk {
+    padding: 0 2px;
+    margin: 2px 0;
+    color: #61ffca;
+}
+
+#temperature {
+    padding: 0 2px;
+    margin: 2px 0;
+    color: #ffb4a2;
+}
+
+#temperature.critical {
+    color: #ff6767;
+    text-shadow: #ff6767 0px 0px 8px;
+}
+
+#battery {
+    padding: 0 2px;
+    margin: 2px 0;
+    color: #ffffff;
+}
+
+#battery.warning {
+    color: #ffb4a2;
+}
+
+#battery.critical {
+    color: #ff6767;
+}
+
+#tray {
+    padding: 0 4px;
+    margin: 4px 2px;
+    background-color: rgba(0, 0, 0, 0.2);
+    border: 2px solid rgba(18, 18, 18, 0.3);
+}
+
+#tray > .passive {
+    -gtk-icon-effect: dim;
+}
+
+#tray > .needs-attention {
+    -gtk-icon-effect: highlight;
+    background-color: rgba(255, 103, 103, 0.3);
+}
+
+#custom-power {
+    padding: 0 0px;
+    margin: 4px 4px;
+    color: #ffffff;
+}
+
+#custom-power:hover {
+    color: #ff6767;
+    background-color: rgba(255, 103, 103, 0.1);
+}
+
+#idle-inhibitor {
+    padding: 0 2px;
+    margin: 2px 0;
+    color: #ffffff;
+}
+
+#idle-inhibitor.activated {
+    color: #a277ff;
+}
+
+#wlr-taskbar {
+    margin: 4px 4px;
+    padding: 0;
+    background-color: transparent;
+}
+
+#wlr-taskbox {
+    background-color: transparent;
+}
+
+#wlr-taskbutton {
+    padding: 0 3px;
+    margin: 0 1px;
+    color: rgba(255, 255, 255, 0.6);
+    background-color: transparent;
+    border: 1px solid transparent;
+}
+
+#wlr-taskbutton:hover {
+    color: #a277ff;
+    background-color: rgba(162, 119, 255, 0.1);
+}
+
+#wlr-taskbutton.active {
+    color: #a277ff;
+    background-color: rgba(162, 119, 255, 0.15);
+    border: 1px solid rgba(162, 119, 255, 0.8);
+}

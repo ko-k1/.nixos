@@ -87,6 +87,7 @@
     btop
     cava
     unstable.opencode
+    unstable.claude-code
     pkgs.nvtopPackages.full
     starship
     p7zip
@@ -102,6 +103,9 @@
     bat
     ncdu
     unzip
+    zip
+    which
+    mercurial
     unrar
     netcat-openbsd
     tcpdump

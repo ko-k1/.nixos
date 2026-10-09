@@ -10,7 +10,7 @@
     lfs.enable = true;
     settings = {
       user.name = "koki";
-      user.email = "koki@example.com";
+      user.email = "koki@kxki.dev";
       init.defaultBranch = "main";
       pull.rebase = true;
       push.autoSetupRemote = true;

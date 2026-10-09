@@ -1,6 +1,8 @@
-# OpenSSH daemon. Password/KBD logins are off: add your public key(s)
-# below (or via secrets/) before relying on remote access, otherwise you
-# lock yourself out.
+# OpenSSH daemon. Live parity: password auth stays ON because no
+# authorized_keys exist yet (~/.ssh has only known_hosts). Flip
+# PasswordAuthentication/KbdInteractiveAuthentication back to false AFTER
+# adding your public key(s) below — otherwise you lock yourself out of
+# remote access on the next switch.
 {
   config,
   lib,
@@ -11,8 +13,9 @@
   services.openssh = {
     enable = true;
     settings = {
-      PasswordAuthentication = false;
-      KbdInteractiveAuthentication = false;
+      # Hardening (opt-in once keys exist):
+      # PasswordAuthentication = false;
+      # KbdInteractiveAuthentication = false;
       PermitRootLogin = "prohibit-password";
       AllowUsers = [ "koki" ];
     };

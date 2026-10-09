@@ -1,6 +1,7 @@
-# Shared xdg-desktop-portal base. Compositor modules (hyprland/niri) only
-# ADD their backend to `extraPortals` / `config`; this file owns `enable`
-# so the two backends never fight over the same option.
+# Shared xdg-desktop-portal base. Compositor backends come from their own
+# programs.* options (hyprland pins portalPackage from unstable); this
+# file only owns `enable` + the gtk fallback so backends never fight over
+# the same option.
 {
   config,
   lib,

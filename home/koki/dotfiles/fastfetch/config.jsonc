@@ -1,0 +1,67 @@
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+  "logo": {
+    "type": "small",
+    "source": "nixos",
+    "color": { "1":"white","2":"#8855ff","3":"white","4":"#8855ff","5":"white","6":"#8855ff" },
+    "padding": { "right": 3 ,"top": 1}
+  },
+  "display": {
+    "separator": "  ",
+    "color": {
+      "keys": "magenta"
+    },
+    "key": {
+      "type": "string"
+    },
+    "size": {
+      "binaryPrefix": "iec",
+      "ndigits": 0,
+      "spaceBeforeUnit": "default"
+    }
+  },
+  "modules": [
+    {
+      "type": "title",
+      "fqdn": false
+    },
+    {
+      "type": "separator",
+      "string": "─"
+    },
+    {
+      "type": "os",
+      "key": " ",
+      "format": "{name}"
+    },
+    {
+      "type": "uptime",
+      "key": " ",
+      "keyColor": "yellow",
+      "format": "{hours}h {minutes}m"
+    },
+    {
+      "type": "wm",
+      "key": " "
+    },
+    {
+      "type": "memory",
+      "key": " ",
+      "keyColor": "blue",
+      "format": "{used} / {total}"
+    },
+    {
+      "type": "terminal",
+      "key": " "
+    },
+    "break",
+    {
+      "type": "colors",
+      "symbol": "block",
+      "block": {
+        "width": 3,
+        "range": [0, 7]
+      }
+    }
+  ]
+}

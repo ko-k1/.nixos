@@ -1,0 +1,49 @@
+#
+# ver 0.15.1 for windows
+#
+#see confiog docs --> https://alacritty.org/config-alacritty.html
+
+[terminal]
+shell = "bash"
+
+[general]
+import = ["~/.config/alacritty/themes/duskfox.toml"]
+working_directory = "$HOME"
+
+[env]
+WINIT_X11_SCALE_FACTOR = "1.0"
+
+[window]
+dimensions = { columns = 0, lines = 0 }
+position = { x = 480, y = 270 }
+opacity = 0.4
+padding.x = 10
+padding.y = 10
+dynamic_padding = false
+decorations = "None"
+decorations_theme_variant = "Dark" # "Light"
+startup_mode = "Windowed"
+title = "Terminal"
+level = "AlwaysOnTop"
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[font]
+normal.family = "HackGen35 Console NF"
+bold.family = "HackGen35 Console NF"
+italic.family = "HackGen35 Console NF"
+bold_italic.family = "HackGen35 Console NF"
+size = 13.0
+
+[colors]
+[colors.primary]
+foreground = "#d8d8d8"
+background = "#1c1c1c"
+
+[cursor]
+style = "underline"
+
+# Tip: for inspiration, look for values in the source code files of your favorite VS Code themes, and use the color picker in
+# Google to test colors before setting a value, or simply using an editor such as VS Code where colors are displayed in a

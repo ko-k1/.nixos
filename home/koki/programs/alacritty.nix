@@ -1,3 +1,7 @@
+# Alacritty config, managed verbatim from home/koki/dotfiles/alacritty
+# (was hand-maintained in ~/.config/alacritty/; duskfox theme, 0.4
+# opacity). programs.alacritty stays OFF: it would generate a competing
+# alacritty.toml. The package itself is in packages.nix.
 {
   config,
   lib,
@@ -5,20 +9,8 @@
   ...
 }:
 {
-  programs.alacritty = {
-    enable = true;
-    settings = {
-      font = {
-        size = 11.0;
-        normal.family = "JetBrainsMono Nerd Font";
-      };
-      window.opacity = 0.95;
-      colors = {
-        primary = {
-          background = "#1e1e2e";
-          foreground = "#cdd6f4";
-        };
-      };
-    };
+  xdg.configFile."alacritty" = {
+    source = ../dotfiles/alacritty;
+    recursive = true;
   };
 }

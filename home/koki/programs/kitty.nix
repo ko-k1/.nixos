@@ -38,6 +38,11 @@
       cursor = "#dddddd";
 
       shell = "zsh";
+
+      # Powerline tabs + battery/clock, drawn by tab_bar.py below.
+      tab_bar_style = "custom";
     };
   };
+
+  xdg.configFile."kitty/tab_bar.py".source = ../dotfiles/kitty/tab_bar.py;
 }

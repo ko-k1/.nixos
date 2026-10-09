@@ -8,5 +8,12 @@ import ../devshells/common.nix {
     cmake
     ninja
     pkg-config
+    gnumake
+    autoconf
+    m4
+    perl
+    nasm
+    yasm
+    patchelf
   ];
 }

@@ -1,0 +1,6 @@
+[Added Associations]
+audio/mpeg=vlc.desktop;audacity.desktop;mpv.desktop;
+audio/vnd.wave=vlc.desktop;mpv.desktop;
+
+[Default Applications]
+x-scheme-handler/claude-cli=claude-code-url-handler.desktop

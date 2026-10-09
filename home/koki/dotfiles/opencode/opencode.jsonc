@@ -1,0 +1,79 @@
+{
+  "$schema": "https://opencode.ai/config.json",
+  "provider": {
+    "llama-local": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Local Llama",
+      "options": {
+        "baseURL": "http://localhost:8080/v1"
+      },
+      "models": {
+        "llama3": {
+          "name": "Qwythos-9B-v2-MTP-Q6_K",
+          "limit": {
+            "context": 1048576,
+            "output": 248320
+          }
+        }
+      }
+    },
+    "fusion-local": {
+      "npm": "@ai-sdk/openai-compatible",
+      "name": "Local Fusion",
+      "options": {
+        "baseURL": "http://127.0.0.1:8787/v1"
+      },
+      "models": {
+        "fusion/auto": {
+          "name": "Fusion Auto (panel synthesis)",
+          "limit": { "context": 1000000, "output": 16384 }
+        },
+        "fusion/panel": {
+          "name": "Fusion Panel + Analyst",
+          "limit": { "context": 1000000, "output": 16384 }
+        },
+        "fusion/panel:opus": {
+          "name": "Fusion Panel · Synthesizer Claude Opus",
+          "limit": { "context": 1000000, "output": 16384 }
+        },
+        "fusion/panel:gpt55": {
+          "name": "Fusion Panel · Synthesizer GPT-5.5",
+          "limit": { "context": 1000000, "output": 16384 }
+        },
+        "fusion/panel:merge": {
+          "name": "Fusion Panel · Merge mode",
+          "limit": { "context": 1000000, "output": 16384 }
+        },
+        "fusion/panel:decide": {
+          "name": "Fusion Panel · Decide mode",
+          "limit": { "context": 1000000, "output": 16384 }
+        },
+        "fusion/vote": {
+          "name": "Fusion Self-Consistency Vote",
+          "limit": { "context": 1000000, "output": 16384 }
+        },
+        "fusion/cascade": {
+          "name": "Fusion Cascade + Fallback",
+          "limit": { "context": 1000000, "output": 16384 }
+        },
+        "fusion/refine": {
+          "name": "Fusion Critic-Refine",
+          "limit": { "context": 1000000, "output": 16384 }
+        },
+        "gpt-5.6-think-deeper": {
+          "name": "Passthrough GPT-5.6 Think Deeper",
+          "limit": { "context": 1000000, "output": 16384 }
+        },
+        "gpt-5.5": {
+          "name": "Passthrough GPT-5.5",
+          "limit": { "context": 1000000, "output": 16384 }
+        },
+        "claude-opus": {
+          "name": "Passthrough Claude Opus",
+          "limit": { "context": 1000000, "output": 16384 }
+        }
+      }
+    }
+  }
+}
+

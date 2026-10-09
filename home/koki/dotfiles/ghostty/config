@@ -1,0 +1,19 @@
+# The syntax is "key = value". The whitespace around the
+# equals doesn't matter.
+background = 1c1c1c
+foreground = f0f0f0
+background-opacity = 0.8
+background-blur = true
+
+# Comments start with a `#` and are only valid on their own line.
+# Blank lines are ignored!
+
+keybind = ctrl+z=close_surface
+keybind = ctrl+d=new_split:right
+
+# Empty values reset the configuration to the default value
+font-family = "JetBrain Mono Nerd Font"
+custom-shader = shaders/cursor_warp.glsl
+
+shell-integration-features = no-cursor
+cursor-style = underline

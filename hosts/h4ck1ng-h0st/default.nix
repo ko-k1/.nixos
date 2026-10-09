@@ -23,7 +23,6 @@
     ../../modules/development/git.nix
     ../../modules/development/languages.nix
     ../../modules/development/tool.nix
-    ../../modules/hardware/amd.nix
     ../../modules/hardware/nvidia.nix
     ../../modules/programs/gaming.nix
     ../../modules/services/docker.nix

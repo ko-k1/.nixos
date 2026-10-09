@@ -1,3 +1,6 @@
+# WezTerm config, managed verbatim from home/koki/dotfiles/wezterm
+# (was hand-maintained in ~/.config/wezterm/). programs.wezterm stays OFF:
+# it always writes its own wezterm.lua. The package is in packages.nix.
 {
   config,
   lib,
@@ -5,17 +8,5 @@
   ...
 }:
 {
-  programs.wezterm = {
-    enable = true;
-    extraConfig = ''
-      local wezterm = require("wezterm")
-
-      return {
-        font = wezterm.font("JetBrainsMono Nerd Font"),
-        font_size = 11.0,
-        color_scheme = "Catppuccin Mocha",
-        window_background_opacity = 0.95,
-      }
-    '';
-  };
+  xdg.configFile."wezterm/wezterm.lua".source = ../dotfiles/wezterm/wezterm.lua;
 }
