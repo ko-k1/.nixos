@@ -15,7 +15,7 @@ let
     q = "exit";
     l = "eza -a --colour=always --icons";
     lt = "tree -a -C --dirsfirst";
-    nxrb = "sudo nixos-rebuild switch --flake /home/koki/src/.nixos#h4ck1ng-h0st";
+    nxrb = "sudo nixos-rebuild switch --flake /home/koki/.nixos#h4ck1ng-h0st";
     rebuild = "nix-rebuild";
     check = "nix-check";
     ".." = "cd ..";
