@@ -29,7 +29,7 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
 - `overlays/`          one file per concern (`ly`, `waybar`, `bibata`) composed in `default.nix` + local packages
 - `pkgs/`              custom packages (callPackage-able)
   - `pkgs/my-package/` custom package definition (`default.nix`)
-  - `pkgs/scripts.nix`  custom scripts: `nix-rebuild`, `nix-check` (as `pkgs.myScripts.*`)
+  - `pkgs/scripts.nix`  custom scripts: `nix-rebuild`, `nix-check` (as `pkgs.myScripts.*`); `nix-rebuild` owns the repo path (`nxrb` alias calls it)
   - `pkgs/hyprglass.nix`, `pkgs/zsuggestion.nix` pinned third-party builds
 - `patches/`           upstream fix patches: ly bigclock color + waybar lua dispatch (via overlays), optional nvidia kernel patch (applied in `modules/hardware/nvidia.nix` to the `production` driver; empty = no-op)
 - `devshells/`         per-language dev shells
@@ -50,7 +50,7 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
 - Host entry files are always `default.nix`.
 - System modules own enablement (`myDesktop.*.enable`, services); home modules own user config. Never write `home-manager.users.*` from `modules/`.
 - nvim lives only in `home/koki/programs/nvim/`.
-- Fonts live only in `modules/desktop/fonts.nix`.
+- Fonts live only in `modules/desktop/fonts.nix` (not in `home/koki/packages.nix`).
 - nixpkgs config (`allowUnfree`, `permittedInsecurePackages`) lives only in `lib/helpers.nix` `nixpkgsConfig`.
 - Only `h4ck1ng-h0st` is wired as a buildable configuration; other hosts are stubs.
 - Add a new module: create the file under `modules/`, import it from `hosts/<host>/default.nix`.

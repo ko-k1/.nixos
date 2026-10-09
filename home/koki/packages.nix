@@ -26,9 +26,8 @@
     hyprpaper
     nwg-dock-hyprland
 
-    # Terminals (kitty/foot configured via programs.*; rest stock).
-    kitty
-    foot
+    # Terminals. kitty/foot come from programs.* (programs/kitty.nix,
+    # programs/foot.nix); the rest run stock or with verbatim dotfiles.
     alacritty
     wezterm
     ghostty
@@ -81,15 +80,14 @@
     # Remote computing.
     parsec-bin
 
-    # CLI and shell tools.
+    # CLI and shell tools (starship/fzf/tmux come from programs.*).
     fastfetch
     eza
     btop
     cava
     unstable.opencode
     unstable.claude-code
-    pkgs.nvtopPackages.full
-    starship
+    nvtopPackages.full
     p7zip
     gh
     openssl
@@ -98,8 +96,6 @@
     jq
     ripgrep
     fd
-    fzf
-    tmux
     bat
     ncdu
     unzip
@@ -120,13 +116,11 @@
     qt5.qtbase
     qt6.qtbase
 
-    # Theme, icons, cursor, fonts.
+    # Theme, icons. Fonts live in modules/desktop/fonts.nix; the cursor
+    # in theme.nix.
     catppuccin-gtk
     catppuccin-kvantum
     papirus-icon-theme
-    nerd-fonts.jetbrains-mono
-    nerd-fonts.fantasque-sans-mono
-    hackgen-nf-font
     qt6Packages.qtstyleplugin-kvantum
     openh264
     ffmpeg
