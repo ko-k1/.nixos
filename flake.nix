@@ -2,12 +2,15 @@
   description = "koki's NixOS configuration";
 
   inputs = {
-    nixpkgs.url = "github:NixOS/nixpkgs/nixos-26.05";
+    # System tracks nixos-unstable (glibc >= 2.43). `nixpkgs-unstable`
+    # follows it so existing `unstable.*` references keep working without
+    # pulling a second nixpkgs revision.
+    nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-    nixpkgs-unstable.url = "github:NixOS/nixpkgs/nixos-unstable";
+    nixpkgs-unstable.follows = "nixpkgs";
 
     home-manager = {
-      url = "github:nix-community/home-manager/release-26.05";
+      url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
 

@@ -5,7 +5,7 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
 
 ## Layout
 
-- `flake.nix`          entrypoint: inputs (nixpkgs 26.05, nixpkgs-unstable, home-manager, shojiwm), nixosConfigurations, homeConfigurations, devShells, overlays, formatter (`nixfmt`)
+- `flake.nix`          entrypoint: inputs (nixpkgs = nixos-unstable, nixpkgs-unstable follows it, home-manager master, shojiwm), nixosConfigurations, homeConfigurations, devShells, overlays, formatter (`nixfmt`)
 - `setup.sh`           one-shot bootstrap: preflight → hardware-configuration → one `nixos-rebuild` run
 - `hosts/<name>/`      machine entries: `default.nix` (imports modules) + `hardware-configuration.nix`
   - `hosts/common.nix` shared helper for stub hardware configurations (used by desktop, laptop, vm)
