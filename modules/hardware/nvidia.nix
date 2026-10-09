@@ -13,12 +13,17 @@
 {
   # Xid 62 freeze mitigations for Turing: preserve VRAM across suspend,
   # enable nvidia-drm fbdev for Wayland, disable GSP firmware offload
-  # (top Xid 62 suspect) and PCIe ASPM power-state transitions.
+  # and PCIe ASPM power-state transitions. GSP-off + ASPM-off alone did
+  # NOT stop Xid 62 (still hit 2026-10-09 09:54), so PowerMizer is also
+  # pinned to max performance: the always-on GPU load (wallpaperengine +
+  # hyprglass) otherwise keeps the card flapping between P-states, the
+  # usual Xid 62 trigger. Costs ~20-40 W at idle.
   boot.kernelParams = [
     "nvidia.NVreg_PreserveVideoMemoryAllocations=1"
     "nvidia_drm.fbdev=1"
     "nvidia.NVreg_EnableGpuFirmware=0"
     "pcie_aspm=off"
+    "nvidia.NVreg_RegistryDwords=PowerMizerEnable=0x1;PerfLevelSrc=0x2222;PowerMizerDefault=0x1;PowerMizerDefaultAC=0x1"
   ];
 
   hardware.graphics.enable = true;
