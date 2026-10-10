@@ -93,7 +93,8 @@
     bun
     nodejs-slim
     # Language servers for Claude Code's LSP plugins outside devshells.
-    rust-analyzer
+    # rust-analyzer is left to the rust devshell: it needs cargo/rustc,
+    # which aren't global, so a global copy can't load any workspace.
     pyright
     typescript-language-server
     nvtopPackages.full
