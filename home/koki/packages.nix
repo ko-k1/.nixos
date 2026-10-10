@@ -87,6 +87,11 @@
     cava
     unstable.opencode
     unstable.claude-code
+    # JS: bun is the package manager/runner (`bunx`, no npm). nodejs-slim is
+    # only the `node` runtime (no npm/npx) for Claude Code plugin hooks: ECC's
+    # hooks run `node -e`, which bun can't stand in for (argv layout differs).
+    bun
+    nodejs-slim
     nvtopPackages.full
     p7zip
     gh
