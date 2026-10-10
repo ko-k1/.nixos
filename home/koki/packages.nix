@@ -92,6 +92,10 @@
     # hooks run `node -e`, which bun can't stand in for (argv layout differs).
     bun
     nodejs-slim
+    # Language servers for Claude Code's LSP plugins outside devshells.
+    rust-analyzer
+    pyright
+    typescript-language-server
     nvtopPackages.full
     p7zip
     gh
