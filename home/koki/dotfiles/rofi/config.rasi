@@ -1,2 +1,2 @@
-
-@theme "@rofi@/share/rofi/themes/gruvbox-dark.rasi"
+@theme "@ctp-rofi@/catppuccin-default.rasi"
+@import "@ctp-rofi@/themes/catppuccin-mocha.rasi"

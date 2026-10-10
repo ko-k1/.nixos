@@ -13,9 +13,15 @@ let
   # of a hard-coded /nix/store path.
   withStorePaths =
     file:
-    builtins.replaceStrings [ "@btop@" "@rofi@" ] [ "${pkgs.btop}" "${pkgs.rofi}" ] (
-      builtins.readFile file
-    );
+    builtins.replaceStrings
+      [ "@btop@" "@rofi@" "@ctp-btop@" "@ctp-rofi@" ]
+      [
+        "${pkgs.btop}"
+        "${pkgs.rofi}"
+        "${config.catppuccin.sources.btop}"
+        "${config.catppuccin.sources.rofi}"
+      ]
+      (builtins.readFile file);
 in
 {
   xdg.configFile = {

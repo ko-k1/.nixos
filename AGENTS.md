@@ -5,7 +5,7 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
 
 ## Layout
 
-- `flake.nix`          entrypoint: inputs (nixpkgs = nixos-unstable, nixpkgs-unstable follows it, home-manager master, shojiwm), nixosConfigurations, homeConfigurations, devShells, overlays, formatter (`nixfmt`)
+- `flake.nix`          entrypoint: inputs (nixpkgs = nixos-unstable, nixpkgs-unstable follows it, home-manager master, shojiwm, sonora, catppuccin/nix), nixosConfigurations, homeConfigurations, devShells, overlays, formatter (`nixfmt`)
 - `setup.sh`           one-shot bootstrap: preflight → hardware-configuration → one `nixos-rebuild` run
 - `hosts/<name>/`      machine entries: `default.nix` (imports modules) + `hardware-configuration.nix`
   - `hosts/common.nix` shared helper for stub hardware configurations (used by desktop, laptop, vm)
@@ -18,7 +18,7 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
   - `programs/` gaming (firefox, steam, wireshark)
 - `home/<user>/`       Home Manager modules: `default.nix` + per-concern files
   - `packages.nix` full user package list (`unstable` via extraSpecialArgs)
-  - `theme.nix` gtk/qt/cursor/session vars; `shell.nix` bash/zsh/fish/fzf (shared aliases in `home.shellAliases`); `zsuggestion.nix` user config (package in `pkgs/zsuggestion.nix`)
+  - `theme.nix` unified Catppuccin Mocha/Blue: GTK3/4, Qt5/6 via Kvantum (catppuccin/nix, `autoEnable = false`), Papirus folders, Bibata cursor, dconf dark pref; rofi/btop themes templated from `catppuccin.sources` (`@ctp-rofi@`, `@ctp-btop@`); `shell.nix` bash/zsh/fish/fzf (shared aliases in `home.shellAliases`); `zsuggestion.nix` user config (package in `pkgs/zsuggestion.nix`)
   - `hyprland.nix` / `niri.nix` / `waybar.nix` user-side compositor config (enablement is system-side via `myDesktop.*.enable`)
   - `programs/` per-program modules (kitty, foot, alacritty, wezterm, starship, nvim); starship loads `dotfiles/starship/starship.toml` (Catppuccin Mocha)
   - `programs/nvim/` pure Nix-native LSP setup (`vim.lsp.enable`, servers in `extraPackages`, no Mason)

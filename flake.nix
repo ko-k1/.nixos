@@ -23,6 +23,13 @@
       url = "github:sonorahq/sonora";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+
+    # Catppuccin ports as Home Manager options (used for Kvantum/Qt only;
+    # app colours stay in home/koki/dotfiles).
+    catppuccin = {
+      url = "github:catppuccin/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs =

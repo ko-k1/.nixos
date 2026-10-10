@@ -116,12 +116,8 @@
     qt5.qtbase
     qt6.qtbase
 
-    # Theme, icons. Fonts live in modules/desktop/fonts.nix; the cursor
-    # in theme.nix.
-    catppuccin-gtk
-    catppuccin-kvantum
-    papirus-icon-theme
-    qt6Packages.qtstyleplugin-kvantum
+    # GTK/Qt theme, icons and cursor live in theme.nix; fonts in
+    # modules/desktop/fonts.nix.
     openh264
     ffmpeg
   ];

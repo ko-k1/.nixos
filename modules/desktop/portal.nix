@@ -14,4 +14,8 @@
     extraPortals = with pkgs; [ xdg-desktop-portal-gtk ];
     config.common.default = [ "gtk" ];
   };
+
+  # dconf backs the GTK/libadwaita settings written by home/koki/theme.nix
+  # (color-scheme, gtk/icon/cursor theme) and read by the gtk portal.
+  programs.dconf.enable = true;
 }

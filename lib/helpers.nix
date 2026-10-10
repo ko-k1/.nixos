@@ -8,6 +8,7 @@ let
     home-manager
     shojiwm
     sonora
+    catppuccin
     ;
 
   # Single source of nixpkgs config for every pkgs instance (NixOS module
@@ -71,7 +72,10 @@ in
             # Move conflicting unmanaged files to *.backup instead of
             # failing the whole switch.
             backupFileExtension = "backup";
-            sharedModules = [ sonora.homeManagerModules.default ];
+            sharedModules = [
+              sonora.homeManagerModules.default
+              catppuccin.homeModules.catppuccin
+            ];
             users.${user} = import (../home/${home}/default.nix);
             extraSpecialArgs = {
               inherit unstable;
@@ -98,6 +102,7 @@ in
       // extraSpecialArgs;
       modules = [
         sonora.homeManagerModules.default
+        catppuccin.homeModules.catppuccin
         (../home/${user}/default.nix)
       ]
       ++ extraModules;
