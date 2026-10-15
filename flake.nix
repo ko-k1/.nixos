@@ -24,6 +24,20 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
 
+    # Single-maintainer flakes whose NixOS modules run at activation
+    # (claude-desktop links into /usr, loads vhost_vsock, edits groups).
+    # Update them on their own and read the upstream diff first:
+    #   nix flake update claude-desktop helium-browser
+    claude-desktop = {
+      url = "github:nmcbride/claude-desktop-nixos";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
+    helium-browser = {
+      url = "github:oxcl/nix-flake-helium-browser";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
+
     # Catppuccin ports as Home Manager options (used for Kvantum/Qt only;
     # app colours stay in home/koki/dotfiles).
     catppuccin = {

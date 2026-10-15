@@ -5,17 +5,17 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
 
 ## Layout
 
-- `flake.nix`          entrypoint: inputs (nixpkgs = nixos-unstable, nixpkgs-unstable follows it, home-manager master, shojiwm, sonora, catppuccin/nix), nixosConfigurations, homeConfigurations, devShells, overlays, formatter (`nixfmt`)
+- `flake.nix`          entrypoint: inputs (nixpkgs = nixos-unstable, nixpkgs-unstable follows it, home-manager master, shojiwm, sonora, claude-desktop, helium-browser, catppuccin/nix), nixosConfigurations, homeConfigurations, devShells, overlays, formatter (`nixfmt`)
 - `setup.sh`           one-shot bootstrap: preflight → hardware-configuration → one `nixos-rebuild` run
 - `hosts/<name>/`      machine entries: `default.nix` (imports modules) + `hardware-configuration.nix`
   - `hosts/common.nix` shared helper for stub hardware configurations (used by desktop, laptop, vm)
 - `modules/`           system modules, grouped by concern:
   - `system/` nix (settings+GC), boot, locale, networking, packages, security, users
-  - `desktop/` audio, fonts, portal (shared xdg base), ly, hyprland, niri, shojiwm
+  - `desktop/` audio, fonts, portal (shared xdg base + `NIXOS_OZONE_WL`), ly, hyprland, niri, shojiwm
   - `development/` git, languages (nix-ld), tool (direnv)
   - `hardware/` amd (AMD GPUs only — not imported on h4ck1ng-h0st), nvidia (RTX 2080 Ti, `open=false`, `production` driver)
   - `services/` docker, podman, printing, ollama, sunshine, ssh
-  - `programs/` gaming (firefox, steam, wireshark)
+  - `programs/` gaming (firefox, steam, wireshark), helium (browser; explicit Wayland flags, its binary wrapper ignores `NIXOS_OZONE_WL`), claude-desktop (Cowork: OVMF/virtiofsd links, vhost_vsock, kvm group)
 - `home/<user>/`       Home Manager modules: `default.nix` + per-concern files
   - `packages.nix` full user package list (`unstable` via extraSpecialArgs)
   - `theme.nix` unified Catppuccin Mocha/Blue: GTK3/4, Qt5/6 via Kvantum (catppuccin/nix, `autoEnable = false`), Papirus folders, Bibata cursor, dconf dark pref; rofi/btop themes templated from `catppuccin.sources` (`@ctp-rofi@`, `@ctp-btop@`); `shell.nix` bash/zsh/fish/fzf (shared aliases in `home.shellAliases`); `zsuggestion.nix` user config (package in `pkgs/zsuggestion.nix`)
@@ -25,7 +25,7 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
   - `apps.nix` wires misc app configs from `dotfiles/` (cava, ghostty, fastfetch, rofi, btop, nwg-dock, opencode, kilo, gh, zed, vscode, fcitx5, easyeffects, shojiwm src, mimeapps)
   - `mutable.nix` `koki.mutableFiles` option: writable copies for configs apps rewrite (re-copied only when the repo source changes; overwritten local edits kept as `*.hm-prev`)
   - `dotfiles/` hand-written app configs (incl. `hypr/`, `niri/`, `waybar/`, `starship/`) managed verbatim via `xdg.configFile` or `koki.mutableFiles`; edit here, not in `~/.config`. Store paths are templated (`@btop@`, `@rofi@`), never hard-coded
-- `lib/`               flake helpers: `mkSystem`, `mkHome`, `mkPkgs` (single `nixpkgsConfig` incl. `allowUnfree` + insecure allowlist; wires overlays, shojiwm module, `unstable`, `backupFileExtension`)
+- `lib/`               flake helpers: `mkSystem`, `mkHome`, `mkPkgs` (single `nixpkgsConfig` incl. `allowUnfree` + insecure allowlist; wires overlays, shojiwm/claude-desktop/helium-browser modules, `unstable`, `backupFileExtension`)
 - `overlays/`          one file per concern (`ly`, `waybar`, `bibata`) composed in `default.nix` + local packages
 - `pkgs/`              custom packages (callPackage-able)
   - `pkgs/my-package/` custom package definition (`default.nix`)
@@ -60,3 +60,4 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
 - Stub hosts (desktop, laptop, vm) share `hosts/common.nix` for their hardware configuration.
 - Devshells share `devshells/common.nix` as a template.
 - SSH: password logins are still ON (no authorized keys yet). Add keys in `modules/services/ssh.nix` first, then set `PasswordAuthentication`/`KbdInteractiveAuthentication = false`.
+- Third-party module inputs (`claude-desktop`, `helium-browser`) run code at activation: update them separately (`nix flake update claude-desktop helium-browser`) and review the upstream diff before rebuilding.

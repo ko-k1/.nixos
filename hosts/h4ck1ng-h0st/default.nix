@@ -26,6 +26,8 @@
     ../../modules/development/tool.nix
     ../../modules/hardware/nvidia.nix
     ../../modules/programs/gaming.nix
+    ../../modules/programs/helium.nix
+    ../../modules/programs/claude-desktop.nix
     ../../modules/services/docker.nix
     ../../modules/services/podman.nix
     ../../modules/services/printing.nix

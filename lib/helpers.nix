@@ -9,6 +9,8 @@ let
     shojiwm
     sonora
     catppuccin
+    claude-desktop
+    helium-browser
     ;
 
   # Single source of nixpkgs config for every pkgs instance (NixOS module
@@ -64,6 +66,8 @@ in
         }
         (../hosts/${host}/default.nix)
         shojiwm.nixosModules.default
+        claude-desktop.nixosModules.default
+        helium-browser.nixosModules.default
         home-manager.nixosModules.home-manager
         {
           home-manager = {
