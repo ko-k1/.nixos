@@ -38,9 +38,16 @@
     kdePackages.ark
     loupe
 
+    # Browsers. Firefox (system) and Helium (system module) are separate;
+    # Tor Browser is a self-contained package, so it lives here as a user pkg.
+    tor-browser
+
     # Social.
     equibop
     discord
+
+    # Email.
+    thunderbird
 
     # Audio / video.
     pavucontrol
