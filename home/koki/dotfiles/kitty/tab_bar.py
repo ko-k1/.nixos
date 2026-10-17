@@ -1,7 +1,9 @@
 # pyright: reportMissingImports=false
+import os
 from datetime import datetime
 from kitty.boss import get_boss
 from kitty.fast_data_types import Screen, add_timer, get_options
+from kitty.rgb import to_color
 from kitty.utils import color_as_int
 from kitty.tab_bar import (
     DrawData,
@@ -14,15 +16,13 @@ from kitty.tab_bar import (
 )
 
 opts = get_options()
-icon_fg = as_rgb(color_as_int(opts.color16))
-icon_bg = as_rgb(color_as_int(opts.color8))
-bat_text_color = as_rgb(color_as_int(opts.color15))
+bat_text_color = as_rgb(color_as_int(opts.color2))
 clock_color = as_rgb(color_as_int(opts.color15))
-date_color = as_rgb(color_as_int(opts.color8))
+_fgsub = to_color("#6b6890")
+date_color = as_rgb(color_as_int(_fgsub if _fgsub is not None else opts.color8))
 SEPARATOR_SYMBOL, SOFT_SEPARATOR_SYMBOL = ("", "")
 RIGHT_MARGIN = 1
 REFRESH_TIME = 1
-ICON = "  "
 UNPLUGGED_ICONS = {
     10: "",
     20: "",
@@ -50,18 +50,6 @@ PLUGGED_COLORS = {
 }
 
 
-def _draw_icon(screen: Screen, index: int) -> int:
-    if index != 1:
-        return 0
-    fg, bg = screen.cursor.fg, screen.cursor.bg
-    screen.cursor.fg = icon_fg
-    screen.cursor.bg = icon_bg
-    screen.draw(ICON)
-    screen.cursor.fg, screen.cursor.bg = fg, bg
-    screen.cursor.x = len(ICON)
-    return screen.cursor.x
-
-
 def _draw_left_status(
     draw_data: DrawData,
     screen: Screen,
@@ -83,8 +71,6 @@ def _draw_left_status(
     else:
         next_tab_bg = default_bg
         needs_soft_separator = False
-    if screen.cursor.x <= len(ICON):
-        screen.cursor.x = len(ICON)
     screen.draw(" ")
     screen.cursor.bg = tab_bg
     draw_title(draw_data, screen, tab, index)
@@ -127,13 +113,30 @@ def _redraw_tab_bar(_):
         tm.mark_tab_bar_dirty()
 
 
+def _battery_base() -> str | None:
+    import glob
+    import os
+
+    for path in sorted(glob.glob("/sys/class/power_supply/BAT*/capacity")):
+        base = os.path.dirname(path)
+        if os.path.exists(os.path.join(base, "status")):
+            return base
+    for fallback in ("/sys/class/power_supply/BAT1", "/sys/class/power_supply/BAT0"):
+        if os.path.exists(os.path.join(fallback, "capacity")):
+            return fallback
+    return None
+
+
 def get_battery_cells() -> list:
     try:
-        with open("/sys/class/power_supply/BAT0/status", "r") as f:
-            status = f.read()
-        with open("/sys/class/power_supply/BAT0/capacity", "r") as f:
-            percent = int(f.read())
-        if status == "Discharging\n":
+        base = _battery_base()
+        if base is None:
+            return []
+        with open(os.path.join(base, "status"), "r") as f:
+            status = f.read().strip()
+        with open(os.path.join(base, "capacity"), "r") as f:
+            percent = int(f.read().strip())
+        if status == "Discharging":
             # TODO: declare the lambda once and don't repeat the code
             icon_color = UNPLUGGED_COLORS[
                 min(UNPLUGGED_COLORS.keys(), key=lambda x: abs(x - percent))
@@ -141,7 +144,7 @@ def get_battery_cells() -> list:
             icon = UNPLUGGED_ICONS[
                 min(UNPLUGGED_ICONS.keys(), key=lambda x: abs(x - percent))
             ]
-        elif status == "Not charging\n":
+        elif status == "Not charging":
             icon_color = UNPLUGGED_COLORS[
                 min(UNPLUGGED_COLORS.keys(), key=lambda x: abs(x - percent))
             ]
@@ -188,7 +191,6 @@ def draw_tab(
     for cell in cells:
         right_status_length += len(str(cell[1]))
 
-    _draw_icon(screen, index)
     _draw_left_status(
         draw_data,
         screen,

@@ -36,6 +36,9 @@
       foreground = "#dddddd";
       background = "#000000";
       cursor = "#dddddd";
+      # tab_bar.py uses color16 for the icon fg; kitty only defaults
+      # colors 0-15, so it must be set or the custom tab bar fails to load.
+      color16 = "#dddddd";
 
       shell = "zsh";
 
