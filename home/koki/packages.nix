@@ -84,16 +84,21 @@
     gobuster
     nikto
 
+    # Gaming.
+    prismlauncher
+
     # Remote computing.
     parsec-bin
 
     # CLI and shell tools (starship/fzf/tmux come from programs.*).
     fastfetch
+    onefetch
     eza
     btop
     cava
     unstable.opencode
     unstable.claude-code
+    unstable.codex
     # JS: bun is the package manager/runner (`bunx`, no npm). nodejs-slim is
     # only the `node` runtime (no npm/npx) for Claude Code plugin hooks: ECC's
     # hooks run `node -e`, which bun can't stand in for (argv layout differs).
