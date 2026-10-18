@@ -5,11 +5,11 @@
     "margin-bottom": 0,
     "margin-left": 12,
     "margin-right": 12,
-    "height": 32,
+    "height": 38,
     "spacing": 0,
     "modules-left": ["hyprland/workspaces", "custom/cava_mviz", "custom/mpris_title", "hyprland/window"],
     "modules-center": ["clock"],
-    "modules-right": ["pulseaudio", "network", "cpu", "memory", "disk", "temperature", "battery", "tray", "custom/power"],
+    "modules-right": ["pulseaudio", "network", "custom/cpu_graph", "custom/mem_graph", "disk", "temperature", "battery", "tray", "custom/power"],
 
     "hyprland/workspaces": {
         "format": "{icon}",
@@ -57,8 +57,8 @@
         "format": " {:%H:%M:%S} ",
         "format-alt": " {:%Y-%m-%d %a} ",
         "tooltip-format": "{:%Y-%m-%d %A}",
-        "signal": 8,
-        "on-click": "kill -s SIGRTMIN+8 waybar"
+        "interval": 1,
+        "format-alt-click": 1
     },
 
     "pulseaudio": {
@@ -85,16 +85,17 @@
         "tooltip-format": "{essid} ({ipaddr}) via {gwaddr}"
     },
 
-    "cpu": {
-        "format": "  {usage}% ",
-        "interval": 2,
+    "custom/cpu_graph": {
+        "exec": "/home/koki/.config/waybar/WaybarGraph.sh cpu",
+        "return-type": "json",
+        "format": "{}",
         "tooltip": false
     },
 
-    "memory": {
-        "format": "  {}% ",
-        "interval": 5,
-        "tooltip-format": "RAM: {used} / {total} ({percentage}%)"
+    "custom/mem_graph": {
+        "exec": "/home/koki/.config/waybar/WaybarGraph.sh mem",
+        "return-type": "json",
+        "format": "{}"
     },
 
     "disk": {

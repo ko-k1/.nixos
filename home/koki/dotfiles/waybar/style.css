@@ -1,16 +1,25 @@
+@define-color bg #15141b;
+@define-color fg #ffffff;
+@define-color accent #a277ff;
+@define-color green #61ffca;
+@define-color blue #80c8ff;
+@define-color yellow #c7ff7f;
+@define-color peach #ffb4a2;
+@define-color red #ff6767;
+
 * {
     border: none;
-    border-radius: 0px;
-    font-family: JetBrains Mono Nerd Font;
+    border-radius: 0;
+    font-family: "JetBrains Mono Nerd Font";
     font-size: 14px;
     min-height: 0;
 }
 
 window#waybar {
-    background-color: rgba(0, 0, 0, 0.3);
-    border: 2px solid #a277ff;
-    color: #ffffff;
-    padding: 8px 8px;
+    background-color: alpha(@bg, 0.3);
+    border: 2px solid @accent;
+    color: @fg;
+    padding: 8px;
     margin: 4px;
 }
 
@@ -18,141 +27,157 @@ window#waybar.hidden {
     opacity: 0.3;
 }
 
+tooltip {
+    background-color: alpha(@bg, 0.95);
+    border: 2px solid @accent;
+}
+
+tooltip label {
+    color: @fg;
+    padding: 2px 4px;
+}
+
 #workspaces {
-    margin: 0px 0px;
     padding: 0 4px;
     background-color: transparent;
 }
 
 #workspaces button {
-    border-radius: 0px;
+    border-radius: 0;
     margin: 4px 2px;
-    padding: 0 3px;
-    color: rgba(255, 255, 255, 0.6);
+    padding: 0 5px;
+    color: alpha(@fg, 0.55);
     background-color: transparent;
-    border: 4px solid transparent;
+    border: 2px solid transparent;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
 #workspaces button:hover {
-    color: #a277ff;
-    background-color: rgba(162, 119, 255, 0.1);
+    color: @accent;
+    background-color: alpha(@accent, 0.12);
+    border: 2px solid alpha(@accent, 0.4);
 }
 
 #workspaces button.active {
-    color: #a277ff;
-    background-color: rgba(162, 119, 255, 0.15);
-    border: 2px solid rgba(162, 119, 255, 0.8);
+    color: @accent;
+    background-color: alpha(@accent, 0.15);
+    border: 2px solid alpha(@accent, 0.8);
 }
 
 #workspaces button.urgent {
-    color: #ff6767;
-    border: 2px solid rgba(255, 103, 103, 0.6);
+    color: @red;
+    border: 2px solid alpha(@red, 0.6);
 }
 
 #custom-cava_mviz {
-    padding: 0 2px;
+    padding: 0 6px;
     margin: 2px 0;
-    color: #a277ff;
+    color: @accent;
 }
 
 #custom-mpris_title {
-    padding: 0 2px;
+    padding: 0 6px;
     margin: 2px 0;
-    color: #61ffca;
+    color: @green;
+    transition: color 0.25s ease;
 }
 
-#custom-mpris_title.paused {
-    color: rgba(255, 255, 255, 0.4);
-}
-
+#custom-mpris_title.paused,
 #custom-mpris_title.stopped {
-    color: rgba(255, 255, 255, 0.4);
+    color: alpha(@fg, 0.4);
 }
 
 #window {
-    margin: 8px 0px;
-    padding: 0px 4px;
+    margin: 2px 0;
+    padding: 0 8px;
     background-color: transparent;
-    /*border: 2px solid rgba(162, 119, 255, 0.6);*/
-    color: #ffffff;
-    border-bottom: 2px solid #a277ff;
-    text-shadow: #000000 2px 2px 2px;
+    color: alpha(@fg, 0.9);
+    border-bottom: 2px solid alpha(@accent, 0.6);
 }
 
 #clock {
-    padding: 0 2px;
+    padding: 0 6px;
     margin: 2px 0;
-    color: #ffffff;
+    color: @fg;
+    font-weight: bold;
 }
 
 #pulseaudio {
-    padding: 0 2px;
+    padding: 0 6px;
     margin: 2px 0;
-    color: #ffffff;
+    color: @fg;
+    transition: color 0.25s ease;
 }
 
 #pulseaudio.muted {
-    color: #ff6767;
+    color: @red;
 }
 
 #network {
-    padding: 0 2px;
+    padding: 0 6px;
     margin: 2px 0;
-    color: #ffffff;
+    color: @fg;
+    transition: color 0.25s ease;
 }
 
 #network.disconnected {
-    color: #ff6767;
+    color: @red;
 }
 
-#cpu {
-    padding: 0 2px;
+#custom-cpu_graph {
+    padding: 0 6px;
     margin: 2px 0;
-    color: #61ffca;
+    color: @green;
 }
 
-#memory {
-    padding: 0 2px;
+#custom-mem_graph {
+    padding: 0 6px;
     margin: 2px 0;
-    color: #a277ff;
+    color: @accent;
 }
 
 #disk {
-    padding: 0 2px;
+    padding: 0 6px;
     margin: 2px 0;
-    color: #61ffca;
+    color: @green;
 }
 
 #temperature {
-    padding: 0 2px;
+    padding: 0 6px;
     margin: 2px 0;
-    color: #ffb4a2;
+    color: @peach;
+    transition: color 0.25s ease;
 }
 
 #temperature.critical {
-    color: #ff6767;
-    text-shadow: #ff6767 0px 0px 8px;
+    color: @red;
+    text-shadow: @red 0px 0px 8px;
 }
 
 #battery {
-    padding: 0 2px;
+    padding: 0 6px;
     margin: 2px 0;
-    color: #ffffff;
+    color: @fg;
+    transition: color 0.25s ease;
+}
+
+#battery.charging,
+#battery.plugged {
+    color: @green;
 }
 
 #battery.warning {
-    color: #ffb4a2;
+    color: @peach;
 }
 
 #battery.critical {
-    color: #ff6767;
+    color: @red;
 }
 
 #tray {
-    padding: 0 4px;
+    padding: 0 6px;
     margin: 4px 2px;
-    background-color: rgba(0, 0, 0, 0.2);
-    border: 2px solid rgba(18, 18, 18, 0.3);
+    background-color: alpha(@fg, 0.05);
 }
 
 #tray > .passive {
@@ -161,55 +186,59 @@ window#waybar.hidden {
 
 #tray > .needs-attention {
     -gtk-icon-effect: highlight;
-    background-color: rgba(255, 103, 103, 0.3);
+    background-color: alpha(@red, 0.3);
 }
 
 #custom-power {
-    padding: 0 0px;
-    margin: 4px 4px;
-    color: #ffffff;
+    padding: 0 6px;
+    margin: 2px 0;
+    color: @fg;
+    transition: background-color 0.25s ease, color 0.25s ease;
 }
 
 #custom-power:hover {
-    color: #ff6767;
-    background-color: rgba(255, 103, 103, 0.1);
+    color: @red;
+    background-color: alpha(@red, 0.12);
 }
 
-#idle-inhibitor {
-    padding: 0 2px;
+#idle_inhibitor {
+    padding: 0 6px;
     margin: 2px 0;
-    color: #ffffff;
+    color: @fg;
 }
 
-#idle-inhibitor.activated {
-    color: #a277ff;
+#idle_inhibitor.activated {
+    color: @green;
 }
 
-#wlr-taskbar {
-    margin: 4px 4px;
+#taskbar {
+    margin: 4px 2px;
     padding: 0;
     background-color: transparent;
 }
 
-#wlr-taskbox {
-    background-color: transparent;
-}
-
-#wlr-taskbutton {
-    padding: 0 3px;
+#taskbar button {
+    padding: 0 5px;
     margin: 0 1px;
-    color: rgba(255, 255, 255, 0.6);
+    color: alpha(@fg, 0.55);
     background-color: transparent;
-    border: 1px solid transparent;
+    border: 2px solid transparent;
+    transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease;
 }
 
-#wlr-taskbutton:hover {
-    color: #a277ff;
-    background-color: rgba(162, 119, 255, 0.1);
+#taskbar button:hover {
+    color: @accent;
+    background-color: alpha(@accent, 0.12);
+    border: 2px solid alpha(@accent, 0.4);
 }
 
-#wlr-taskbutton.active {
-    color: #a277ff;
-    background-color: rgba(162, 119, 255, 0.15);
-    border: 1px solid rgba(162, 119, 255, 0.8);
+#taskbar button.active {
+    color: @accent;
+    background-color: alpha(@accent, 0.15);
+    border: 2px solid alpha(@accent, 0.8);
+}
+
+#taskbar button.urgent {
+    color: @red;
+    border: 2px solid alpha(@red, 0.6);
 }
