@@ -19,7 +19,11 @@
     swaybg
     swaylock
     awww
-    wlogout
+    (lib.hiPrio (
+      writeShellScriptBin "wlogout" ''
+        exec ${wlogout}/bin/wlogout -b 5 -T 394 -B 394 "$@"
+      ''
+    ))
     rofi
     fuzzel
     hyprshot
