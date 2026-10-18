@@ -23,6 +23,7 @@
     ./programs/wezterm.nix
     ./programs/starship.nix
     ./programs/sonora.nix
+    ./programs/swaylock.nix
     ./programs/nvim
   ];
 

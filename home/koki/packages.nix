@@ -15,9 +15,9 @@
     zsh
     fish
 
-    # Desktop environment helpers.
+    # Desktop environment helpers. swaylock comes from programs/swaylock.nix
+    # (swaylock-effects: same `swaylock` binary, themed).
     swaybg
-    swaylock
     awww
     (lib.hiPrio (
       writeShellScriptBin "wlogout" ''
