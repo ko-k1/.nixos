@@ -33,8 +33,10 @@
 
     "custom/cava_mviz": {
         "exec": "/home/koki/.config/waybar/WaybarCava.sh",
+        "return-type": "json",
         "format": "{}",
-        "tooltip": false
+        "tooltip": false,
+        "restart-interval": 1
     },
 
     "custom/mpris_title": {
