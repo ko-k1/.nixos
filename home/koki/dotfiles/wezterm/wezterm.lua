@@ -5,6 +5,7 @@ local config = wezterm.config_builder()
 -- General Settings
 ------------------------------------------------------------
 config.automatically_reload_config = true
+config.default_prog = { 'zsh', '-l' }
 config.font_size = 14.0
 config.use_ime = true
 
