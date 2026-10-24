@@ -1,0 +1,47 @@
+# Fields – list to show, in this order
+# Comment out or remove to hide
+os
+host
+kernel
+uptime
+packages
+shell
+display
+wm
+theme
+icons
+font
+terminal
+cpu
+gpu
+memory
+swap
+disk
+ip
+battery
+locale
+colors
+
+---
+cpu
+gpu
+memory
+swap
+disk
+
+# Appearance
+label_color=magenta
+separator=
+
+# 3D settings
+light=top-left
+spin=xy
+speed=1.2
+size=1.5
+depth=1.0
+
+# Shading (sextants = sharpest edges, needs ghostty/wezterm/kitty/foot)
+shading_mode=sextants
+
+# Box around system info
+box=1

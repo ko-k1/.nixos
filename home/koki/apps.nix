@@ -35,6 +35,8 @@ in
       recursive = true;
     };
     "fastfetch/config.jsonc".source = ./dotfiles/fastfetch/config.jsonc;
+    "fetch/config".source = ./dotfiles/fetch/config;
+    "fetch/logo.txt".source = ./dotfiles/fetch/logo.txt;
     "nwg-dock-hyprland/style.css".source = ./dotfiles/nwg-dock-hyprland/style.css;
     "wlogout/layout".source = ./dotfiles/wlogout/layout;
     "opencode/opencode.jsonc".source = ./dotfiles/opencode/opencode.jsonc;

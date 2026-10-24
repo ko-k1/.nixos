@@ -95,6 +95,7 @@
     parsec-bin
 
     # CLI and shell tools (starship/fzf/tmux come from programs.*).
+    fetch
     fastfetch
     onefetch
     eza
