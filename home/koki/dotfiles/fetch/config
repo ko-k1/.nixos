@@ -1,47 +1,32 @@
-# Fields – list to show, in this order
-# Comment out or remove to hide
 os
-host
-kernel
 uptime
-packages
-shell
-display
 wm
-theme
-icons
-font
-terminal
-cpu
-gpu
 memory
-swap
 disk
-ip
-battery
-locale
+shell
+terminal
 colors
 
----
-cpu
-gpu
-memory
-swap
-disk
-
 # Appearance
-label_color=magenta
-separator=
+label_color=01
+separator=─
+
+# logo colors (override distro defaults)
+logo_outer=white
+logo_inner=white
 
 # 3D settings
-light=top-left
+light=front
 spin=xy
-speed=1.2
-size=1.5
+speed=1.5
+size=1.0
 depth=1.0
+# height=32
 
 # Shading (sextants = sharpest edges, needs ghostty/wezterm/kitty/foot)
-shading_mode=sextants
+# shading_mode=sextants
+shading_mode=ascii
+# shading=.,-~^":;=+*#$@
 
 # Box around system info
-box=1
+box=0
