@@ -73,7 +73,7 @@ tooltip label {
     padding: 0 6px;
     margin: 2px 0;
     color: @accent;
-    font-size: 7px;
+    font-size: 6.0606px; /* 200/33: one block-glyph eighth = 1px, see WaybarCava.sh */
 }
 
 #custom-mpris_title {
