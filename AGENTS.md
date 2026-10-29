@@ -5,7 +5,7 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
 
 ## Layout
 
-- `flake.nix`          entrypoint: inputs (nixpkgs = nixos-unstable, nixpkgs-unstable follows it, home-manager master, shojiwm, sonora, claude-desktop, helium-browser, catppuccin/nix), nixosConfigurations, homeConfigurations, devShells, overlays, formatter (`nixfmt`)
+- `flake.nix`          entrypoint: inputs (nixpkgs = nixos-unstable, nixpkgs-unstable follows it, home-manager master, shojiwm, sonora, claude-desktop, helium-browser, catppuccin/nix, lazyvim-nix), nixosConfigurations, homeConfigurations, devShells, overlays, formatter (`nixfmt`)
 - `setup.sh`           one-shot bootstrap: preflight → hardware-configuration → one `nixos-rebuild` run
 - `hosts/<name>/`      machine entries: `default.nix` (imports modules) + `hardware-configuration.nix`
   - `hosts/common.nix` shared helper for stub hardware configurations (used by desktop, laptop, vm)
@@ -21,7 +21,7 @@ One-shot apply: `./setup.sh` (see `setup.sh --help`).
   - `theme.nix` unified Catppuccin Mocha/Blue: GTK3/4, Qt5/6 via Kvantum (catppuccin/nix, `autoEnable = false`), Papirus folders, Bibata cursor, dconf dark pref; rofi/btop themes templated from `catppuccin.sources` (`@ctp-rofi@`, `@ctp-btop@`); `shell.nix` bash/zsh/fish/fzf (shared aliases in `home.shellAliases`); `zsuggestion.nix` user config (package in `pkgs/zsuggestion.nix`)
   - `hyprland.nix` / `niri.nix` / `waybar.nix` user-side compositor config (enablement is system-side via `myDesktop.*.enable`)
   - `programs/` per-program modules (kitty, foot, alacritty, wezterm, starship, nvim); starship loads `dotfiles/starship/starship.toml` (Catppuccin Mocha)
-  - `programs/nvim/` pure Nix-native LSP setup (`vim.lsp.enable`, servers in `extraPackages`, no Mason)
+  - `programs/nvim/` LazyVim via lazyvim-nix (`programs.lazyvim`; Mason disabled, LSP servers/formatters in `extraPackages`)
   - `apps.nix` wires misc app configs from `dotfiles/` (cava, ghostty, fastfetch, rofi, btop, nwg-dock, opencode, kilo, gh, zed, vscode, fcitx5, easyeffects, shojiwm src, mimeapps)
   - `mutable.nix` `koki.mutableFiles` option: writable copies for configs apps rewrite (re-copied only when the repo source changes; overwritten local edits kept as `*.hm-prev`)
   - `dotfiles/` hand-written app configs (incl. `hypr/`, `niri/`, `waybar/`, `starship/`) managed verbatim via `xdg.configFile` or `koki.mutableFiles`; edit here, not in `~/.config`. Store paths are templated (`@btop@`, `@rofi@`), never hard-coded

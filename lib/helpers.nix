@@ -11,6 +11,7 @@ let
     catppuccin
     claude-desktop
     helium-browser
+    lazyvim
     ;
 
   # Single source of nixpkgs config for every pkgs instance (NixOS module
@@ -79,10 +80,11 @@ in
             sharedModules = [
               sonora.homeManagerModules.default
               catppuccin.homeModules.catppuccin
+              lazyvim.homeManagerModules.default
             ];
             users.${user} = import (../home/${home}/default.nix);
             extraSpecialArgs = {
-              inherit unstable;
+              inherit unstable lazyvim;
             }
             // extraSpecialArgs;
           };
@@ -98,15 +100,19 @@ in
       extraModules ? [ ],
       extraSpecialArgs ? { },
     }:
+    let
+      unstable = mkUnstable system;
+    in
     home-manager.lib.homeManagerConfiguration {
       pkgs = mkPkgs system;
       extraSpecialArgs = {
-        unstable = mkUnstable system;
+        inherit unstable lazyvim;
       }
       // extraSpecialArgs;
       modules = [
         sonora.homeManagerModules.default
         catppuccin.homeModules.catppuccin
+        lazyvim.homeManagerModules.default
         (../home/${user}/default.nix)
       ]
       ++ extraModules;
