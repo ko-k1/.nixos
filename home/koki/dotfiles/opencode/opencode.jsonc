@@ -17,6 +17,16 @@
         }
       }
     },
+    "opencode": {
+        "models": {
+            "deepseek-v4.1-flash-free": {
+                    "limit": {
+                      "context": 1048576,
+                      "output": 128000
+                }
+            }
+        }
+    },
     "fusion-local": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Local Fusion",
