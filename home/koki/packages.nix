@@ -118,6 +118,7 @@
     p7zip
     gh
     openssl
+    gnupg
     nmap
     uv
     jq

@@ -24,6 +24,7 @@
     ./programs/starship.nix
     ./programs/sonora.nix
     ./programs/swaylock.nix
+    ./programs/gnupg.nix
     ./programs/nvim
   ];
 
