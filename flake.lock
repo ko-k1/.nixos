@@ -147,7 +147,6 @@
         "nixpkgs-unstable": [
           "nixpkgs"
         ],
-        "shojiwm": "shojiwm",
         "sonora": "sonora"
       }
     },
@@ -169,26 +168,6 @@
       "original": {
         "owner": "oxalica",
         "repo": "rust-overlay",
-        "type": "github"
-      }
-    },
-    "shojiwm": {
-      "inputs": {
-        "nixpkgs": [
-          "nixpkgs"
-        ]
-      },
-      "locked": {
-        "lastModified": 1791288859,
-        "narHash": "sha256-Jah5DBL9Mv4W22YhLpTSuVtLaAzIUm55DM+F3sg2O+w=",
-        "owner": "bea4dev",
-        "repo": "ShojiWM",
-        "rev": "1dd7b5ea87a629a3a1db9ca373ce4ef70dbfca1a",
-        "type": "github"
-      },
-      "original": {
-        "owner": "bea4dev",
-        "repo": "ShojiWM",
         "type": "github"
       }
     },

@@ -6,7 +6,6 @@ let
     nixpkgs
     nixpkgs-unstable
     home-manager
-    shojiwm
     sonora
     catppuccin
     claude-desktop
@@ -66,7 +65,6 @@ in
           nixpkgs.config = nixpkgsConfig;
         }
         (../hosts/${host}/default.nix)
-        shojiwm.nixosModules.default
         claude-desktop.nixosModules.default
         helium-browser.nixosModules.default
         home-manager.nixosModules.home-manager

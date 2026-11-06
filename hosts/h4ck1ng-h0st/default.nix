@@ -20,7 +20,6 @@
     ../../modules/desktop/ly.nix
     ../../modules/desktop/hyprland.nix
     ../../modules/desktop/niri.nix
-    ../../modules/desktop/shojiwm.nix
     ../../modules/development/git.nix
     ../../modules/development/languages.nix
     ../../modules/development/tool.nix

@@ -23,7 +23,7 @@ Day-to-day (after bootstrap): `sudo nixos-rebuild switch --flake .#h4ck1ng-h0st`
 
 ## Hosts
 
-- `h4ck1ng-h0st` — AMD CPU + NVIDIA RTX 2080 Ti, ly → Hyprland / Niri / ShojiWM.
+- `h4ck1ng-h0st` — AMD CPU + NVIDIA RTX 2080 Ti, ly → Hyprland / Niri.
   The only wired configuration; `desktop`, `laptop`, `vm` are stubs.
-- Compositors toggle via `myDesktop.{hyprland,niri,shojiwm}.enable`
+- Compositors toggle via `myDesktop.{hyprland,niri}.enable`
   (all default on; pick your session in ly).
