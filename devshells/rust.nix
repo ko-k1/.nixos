@@ -7,5 +7,10 @@ import ./common.nix {
     rust-analyzer
     clippy
     rustfmt
+    fontconfig
+    libxcb
+    libxkbcommon
+    vulkan-headers
+    pkg-config
   ];
 }
