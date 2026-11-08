@@ -24,4 +24,7 @@
   # modules/programs/helium.nix) read this and add
   # --ozone-platform-hint=auto plus --enable-wayland-ime for fcitx5.
   environment.sessionVariables.NIXOS_OZONE_WL = "1";
+
+  services.udisks2.enable = true;
+  services.flatpak.enable = true;
 }

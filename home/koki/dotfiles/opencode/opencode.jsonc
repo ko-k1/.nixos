@@ -27,6 +27,16 @@
             }
         }
     },
+    "inferx": {
+      "models": {
+        "deepseek-v4.1-flash-1017-basic": {
+          "limit": {
+            "context": 262144,
+            "output": 128000
+          }
+        }
+      }
+    },
     "fusion-local": {
       "npm": "@ai-sdk/openai-compatible",
       "name": "Local Fusion",

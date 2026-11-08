@@ -11,6 +11,14 @@
     wget
     git
     curl
+    less
+    gnutar
+    gzip
+    bzip2
+    xz
+    rsync
+    linux-firmware
     linux-wallpaperengine
+    polkit
   ];
 }

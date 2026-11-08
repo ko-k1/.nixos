@@ -138,6 +138,17 @@
     myScripts.nix-rebuild
     myScripts.nix-check
 
+    # Desktop usability.
+    polkit_gnome
+    networkmanagerapplet
+    gvfs
+    udisks2
+    flatpak
+    xdg-user-dirs
+    keepassxc
+    evince
+    libreoffice-fresh
+
     # GTK/Qt runtimes and desktop integration.
     gtk3
     gtk4
