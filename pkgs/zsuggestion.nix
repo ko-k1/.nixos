@@ -7,12 +7,12 @@
 }:
 rustPlatform.buildRustPackage {
   pname = "zsuggestion";
-  version = "unstable-2026-08-21";
+  version = "unstable-2026-11-15";
   src = fetchFromGitHub {
     owner = "ko-k1";
     repo = "zsuggestion";
-    rev = "7986216c735850e200a93a88dd12f37775ba3797";
-    sha256 = "1f3q4qbqdmzn556kzq7s8fjm864zjr874zn287xh85xp74mzas13";
+    rev = "f8a96df09021a733f3a516c653724ff7c4797607";
+    sha256 = "12lpmzlgigdzim32nkhq1jxkhv5gwvgdjiap3y783gi54ax0msnw";
   };
   cargoHash = "sha256-PC/PosTXiyrm8bWhwBxMr4U7Auy/8L1llC5yKFHgLbU=";
   doCheck = false;
