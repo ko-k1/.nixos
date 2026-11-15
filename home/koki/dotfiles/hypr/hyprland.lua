@@ -103,10 +103,25 @@ local menu        = "rofi -show drun"
 -- Autostart necessary processes (like notifications daemons, status bars, etc.)
 -- Or execute your favorite apps at launch like this:
 hl.on("hyprland.start", function ()
+  -- Ly launches plain `start-hyprland`, which is not systemd-aware: without
+  -- this, graphical-session.target never activates, so user services like
+  -- sunshine (Moonlight host) are skipped and xdg-desktop-portal refuses to
+  -- start (Discord screen share has no source picker). The fake target is
+  -- NixOS's supported bridge for non-systemd-aware sessions. Skipped when
+  -- already running under the UWSM session, where the target is active.
+  hl.exec_cmd("bash -c 'systemctl --user is-active -q graphical-session.target || { systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP HYPRLAND_INSTANCE_SIGNATURE XDG_SESSION_ID; systemctl --user start nixos-fake-graphical-session.target && touch \"$XDG_RUNTIME_DIR/hypr-fake-graphical-session\"; }'")
+
   hl.exec_cmd("waybar & fcitx5") --if enable hyprpaper add hyprpaper this line
   -- hl.exec_cmd("bash -c 'sleep 1 && hyprctl hyprpaper wallpaper HDMI-A-1,/home/koki/Pictures/wallpaper.jpeg'")
   hl.exec_cmd("nwg-dock-hyprland -lp start -x -i 24 -mb 10 -p bottom -ico nix-snowflake -c 'rofi -show drun'")
   hl.exec_cmd("bash -c 'sleep 1 && XDG_SESSION_TYPE=wayland linux-wallpaperengine --screen-root HDMI-A-1 --bg 3326121126 --disable-particles --silent'")
+end)
+
+-- Stop the graphical session on logout so user services (sunshine, portals,
+-- ...) don't linger at the Ly greeter. Only when this session started the
+-- fake target (marker set above); UWSM owns the target in its own session.
+hl.on("hyprland.shutdown", function ()
+  hl.exec_cmd("bash -c 'if [ -e \"$XDG_RUNTIME_DIR/hypr-fake-graphical-session\" ]; then rm -f \"$XDG_RUNTIME_DIR/hypr-fake-graphical-session\"; systemctl --user --no-block stop graphical-session.target; fi'")
 end)
 
 
